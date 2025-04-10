@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: whatsapp-bot
+    env: node
+    buildCommand: |
+      sudo apt-get update
+      sudo apt-get install -y ffmpeg
+      curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+      chmod +x /usr/local/bin/yt-dlp
+      npm install
+    startCommand: node index.js
+    envVars:
+      - key: CHROME_BIN
+        value: "/usr/bin/google-chrome"
+    plan: free
